@@ -1,31 +1,39 @@
-# ecloud-scrubbing-containers
+# xsuite-space-charge-containers
 
-Dockerfiles for containers related to electron cloud codes.
+Dockerfiles for containers related to space charge xsuite codes.
+Thanks to Kostas. 
+Based on [ecloud-scrubbing-containers](https://github.com/ecloud-cern/ecloud-scrubbing-containers/blob/main/)
 
-Example to build an image:
+### To create your own container 
 
-```
-$ sudo docker build -f xsuite_2022.1 -t registry.cern.ch/ecloud-scrubbing/xsuite:2022.1 .
-```
+1. Install docker with sudo privileges:
+    ```
+    $ sudo apt-get install docker
+    ```
 
-To push the image to the registry:
-```
-$ sudo docker login registry.cern.ch
-$ sudo docker push registry.cern.ch/ecloud-scrubbing/xsuite:2022.1
-```
+2. Create a new project at [registry.cern.ch](https://registry.cern.ch/):
 
-Your password to login in registry.cern.ch via docker be found in the user profile in registry.cern.ch (called "CLI secret").
+3. Build docker from container file
+    ```
+    $ sudo docker build -f xsuite_2024.1 -t registry.cern.ch/tprebiba/xsuite:2024.1 .
+    ```
 
-## Available images:
+4. Push image to registry (find CLI secret at user profile):
+    ```
+    $ sudo docker login registry.cern.ch
+    $ sudo docker push registry.cern.ch/tprebiba/xsuite:2024.1
+    ```
+    Check images by:
+    ```
+    $ sudo docker images
+    ```
+    Connect to docker:
+    ```
+    $ sudo docker run -it b1e2a3013cc0
+    ```
+    Delete docker:
+    ```
+    $ sudo docker rmi b1e2a3013cc0 --force
+    ```
 
-https://registry.cern.ch/harbor/projects/3625/repositories
-
-Xsuite:
-```
-registry.cern.ch/ecloud-scrubbing/xsuite:2022.1
-```
-
-Pyecloud:
-```
-registry.cern.ch/ecloud-scrubbing/pyecloud:2023.1
-```
+5. Add registry path to [recipe.yaml](https://gitlab.cern.ch/unpacked/sync/-/blob/master/recipe.yaml?ref_type=heads) (fork and merge).
